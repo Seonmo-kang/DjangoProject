@@ -85,7 +85,7 @@ DATABASES = {
         'PORT' : '5432',
     }
 }
-
+### Superuser ID : tjsah , PW : user or X
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
