@@ -1,4 +1,7 @@
 # DjangoProject
+Description : First Django project in own Github.
+
+version : 0.0.1
 Django vaccine appointment web application
 
 1. Main page with calendar
