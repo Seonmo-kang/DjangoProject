@@ -78,10 +78,10 @@ WSGI_APPLICATION = 'DjangoProject_mvc.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.path.join(BASE_DIR, ''),
-        'USER' : 'postgre',
+        'NAME': 'vaccinecenter',
+        'USER' : 'postgres',
         'PASSWORD' : 'admin',
-        'HOST' : 'localhost',
+        'HOST' : '127.0.0.1',
         'PORT' : '5432',
     }
 }
