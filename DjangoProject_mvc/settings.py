@@ -55,8 +55,8 @@ ROOT_URLCONF = 'DjangoProject_mvc.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'demo')]
-        ,
+        # 'DIRS': [os.path.join(BASE_DIR, 'demo')], # Nexttime templates file should be template path
+        'DIRS': [os.path.join(BASE_DIR,'appFolder','templates','appForm')], # os.path.join( path, additional path+ )
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
