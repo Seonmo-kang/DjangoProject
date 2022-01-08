@@ -7,6 +7,6 @@ urlpatterns = [
                                         # view : view
                                         # kwargs : deliveried argments
                                         # name : route's name
-    path('infoForm',views.InfoFromView.as_view(),name="InfoForm"), # class based View must have .as_view() method in url
-    path('provider',views.HopistalListView.as_view(),name="Provider")
+    path('infoForm',views.InfoFromView.as_view(),name="infoForm"), # class based View must have .as_view() method in url
+    path('provider',views.HopistalListView.as_view(),name="provider")
 ]
