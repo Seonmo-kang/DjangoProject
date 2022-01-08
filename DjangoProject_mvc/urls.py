@@ -18,5 +18,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('appFolder/', include('appFolder.urls')) # App urls file must be in project server
+    path('appFolder/', include('appFolder.urls')), # App 'appFolder' urls file must be in project server.
+    # path('',include('appFolder.urls')) # if you want to direct app to main(128.0.0.1:8000/), then use this.
 ]
