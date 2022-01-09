@@ -3,8 +3,8 @@ from django.db import models
 # Create your models here.
 class Info(models.Model):
     info_index = models.BigAutoField("indexNum",primary_key=True) # Auto incredent number
-    info_dateOfBirth = models.DateField("date of birth",help_text="DD/MM/YY") # Date of Birth
     info_zipCode = models.IntegerField("zipcode") # Zipcode
+    info_dateOfBirth = models.DateField("date of birth",help_text="YYYY/MM/DD") # Date of Birth
     FirstDose = 'fd'
     BoosterDose = 'bd'
     AdditionalDose = 'ad'
