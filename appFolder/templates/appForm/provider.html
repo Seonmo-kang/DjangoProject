@@ -8,6 +8,15 @@
 {% extends 'header.html' %}
 {% block content %}
 <body>
+{% for hospital in object_list %}
+    <li>Hospital name : {{ hospital.hospital_name }}</li>
+    <li>Hospital address : {{ hospital.hospital_address1 }}</li>
+    <li>Hospital address2 : {{ hospital.hospital_address2 }}</li>
+    <li>Hospital city : {{ hospital.hospital_city }}</li>
+    <li>Hospital state : {{ hospital.hospital_state }}</li>
+    <li>Hospital zipcode : {{ hospital.hospital_zipcode }}</li>
+    <li>Hospital vaccinType : {{ hospital.hospital_vaccineType }}</li>
+{% endfor %}
 
     Hospital Provider output from InfoFrom view
 
