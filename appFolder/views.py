@@ -1,10 +1,18 @@
-from django.shortcuts import render
-from django.http import HttpRequest, HttpResponse;
-from django.views.generic.base import TemplateView # Display templates
+from django.http import HttpResponse;
 from django.views.generic import ListView  # Display templates
 
-from .models import Info,Hospital
+from rest_framework import viewsets,permissions
 
+from .models import Info, Hospital
+from .serializers import InfoSerializer
+
+
+class InfoView(viewsets.ModelViewSet):
+    serializer_class = InfoSerializer
+    queryset = Info.objects.all()
+    permission_classes = [
+        permissions.AllowAny
+    ]
 
 def index(request):
     return HttpResponse("Hello Django! This is Django project 1")

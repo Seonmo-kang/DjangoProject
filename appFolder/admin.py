@@ -6,3 +6,4 @@ class InfoAdmin(admin.ModelAdmin):
 admin.site.register(Info, InfoAdmin) # For managing the app, register the model in admin page.
 
 admin.site.register(Hospital) # For managing the app, register the model in admin page.
+
