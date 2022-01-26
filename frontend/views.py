@@ -9,6 +9,8 @@ def index(request):
 # class IndexView(viewsets.):
 #     model =
 
+# class indexView(viewsets)
+
 class InfoView(viewsets.ModelViewSet):
     serializer_class = InfoSerializer
     queryset = InfoModel.objects.all()
