@@ -1,17 +1,18 @@
 import React, { Component } from "react";
-import render from "react-dom";
+import { render } from "react-dom";
 
 class App extends Component{
+
     constructor(props) {
         super(props);
         this.state ={
             data:[],
-            loaded:false,
+            loaded:true,
             placeholder: "Loading"
         };
     }
     componentDidMount() {
-        fetch("frontend/info")
+        fetch("../../../appFolder/info")
             .then(response=>{
                 if(response.status>400){
                     return this.setState(()=>{
@@ -34,13 +35,14 @@ class App extends Component{
                 <ul>
                     {this.state.data.map(info=>{
                         return (
-                            <li key={info.info_index}>
-                                {info.info_dateOfBirth} <br/>
-                                {info.info_zipCode} <br/>
-                                {info.info_vaccine} <br/>
-                                {info.info_vaccineType} <br/>
-                                {info.info_consentAck}
-                            </li>
+                            <>
+                            <li>{info.info_index}</li>
+                            <li>{info.info_dateOfBirth}</li>
+                            <li>{info.info_zipCode}</li>
+                            <li>{info.info_vaccine}</li>
+                            <li>{info.info_vaccineType}</li>
+                            <li>{info.info_consentAck}</li>
+                            </>
                         );
                     })}
                 </ul>
@@ -48,5 +50,5 @@ class App extends Component{
     }
 }
 export default App;
-const container = document.getElementById("App");
+const container = document.getElementById("app");
 render(<App/>,container);
