@@ -1,10 +1,8 @@
-from django.urls import path
 from . import views # views.py all
 from rest_framework import routers
 
 router = routers.DefaultRouter()
 router.register('info',views.InfoView,'info')
-router.register(r'tasks',views.InfoView, 'task')
 # router.register('',views.index,'index')
 # router.register('infoForm',views.InfoFromView.as_view,'infoForm')
 # router.register('provider',views.HopistalListView.as_view,'provider')
