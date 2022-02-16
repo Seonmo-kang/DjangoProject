@@ -5,3 +5,8 @@ class InfoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Info
         fields = '__all__'
+
+class HospitalListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Hospital
+        fields = '__all__'

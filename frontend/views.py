@@ -1,15 +1,8 @@
 from django.shortcuts import render
-from rest_framework import viewsets, permissions
-from .serializers import InfoSerializer
-from .models import InfoModel
+from django.views.generic.base import TemplateView
 
 
-def index(request):
-    return render(request, 'frontend/index.html')
-
-class InfoView(viewsets.ModelViewSet):
-    serializer_class = InfoSerializer
-    queryset = InfoModel.objects.all()
-    permission_classes = [
-        permissions.AllowAny
-    ]
+class ReactView(TemplateView):
+    template_name = 'frontend/index.html'
+    def get_context_data(self, **kwargs):
+        return {'context_variable': 'value'}

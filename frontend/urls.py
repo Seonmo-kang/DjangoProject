@@ -7,6 +7,6 @@ from rest_framework import routers
 # urlpatterns = route.urls
 
 urlpatterns=[
-    path('index/',views.index)
-
+    # path('/home',views.index)
+    path(r'', views.ReactView.as_view(), name='react_app'),
 ]
