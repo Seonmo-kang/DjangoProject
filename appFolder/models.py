@@ -53,4 +53,4 @@ class Hospital(models.Model):
     hospital_vaccineType = models.CharField('Hospital vaccineType', max_length=4, choices=VACCINETYPE_IN_CHOICE)
 
     def __str__(self):
-        return self.Hospital_name[:100]
+        return self.hospital_name[:30]
