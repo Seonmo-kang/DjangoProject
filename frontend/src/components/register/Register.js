@@ -1,0 +1,50 @@
+import React from "react";
+
+class Register extends React.Component{
+    constructor(props) {
+        super(props);
+        this.state ={
+            data:[],
+            loaded:true,
+            placeholder: "Loading"
+        };
+    }
+    componentDidMount() {
+        fetch("../../../appFolder/info")
+            .then(response=>{
+                if(response.status>400){
+                    return this.setState(()=>{
+                        return {placeholder: "Something wrong!"};
+                    });
+                }
+                return response.json();
+            })
+            .then(data=>{
+                this.setState(()=>{
+                    return{
+                        data,
+                        loaded: true
+                    };
+                });
+            });
+    }
+    render() {
+        return(
+            <ul>
+                {this.state.data.map(info=>{
+                    return (
+                        <div>
+                            <li>User #{info.info_index}</li>
+                            <li>Birth of date : {info.info_dateOfBirth}</li>
+                            <li>Zip code : {info.info_zipCode}</li>
+                            <li>Vaccine : {info.info_vaccine}</li>
+                            <li>Type : {info.info_vaccineType}</li>
+                            <li>Consent :{info.info_consentAck}</li>
+                        </div>
+                    );
+                })}
+            </ul>
+        );
+    }
+}
+export default Register;

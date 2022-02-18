@@ -36,21 +36,26 @@ class Info(models.Model):
 
 # Hospital DB
 class Hospital(models.Model):
-    hospital_name = models.CharField('Hospital name',max_length=30, primary_key=True)
-    hospital_address1 = models.CharField('Hospital address1',max_length=20)
-    hospital_address2 = models.CharField('Hospital address2',max_length=200,blank=True) #Address2 is optional
-    hospital_city = models.CharField('Hospital city',max_length=20)
-    hospital_state = models.CharField('Hospital state',max_length=10)
+    hospital_id = models.BigAutoField('Hospital id',primary_key=True)
+    hospital_name = models.CharField('Hospital name',max_length=150)
+    hospital_address1 = models.CharField('Hospital address1',max_length=200)
+    hospital_address2 = models.CharField('Hospital address2',max_length=200,blank=True,null=True) #Address2 is optional
+    hospital_city = models.CharField('Hospital city',max_length=50)
+    hospital_state = models.CharField('Hospital state',max_length=40)
     hospital_zipcode = models.CharField('Hospital zipcode', max_length=11, default='10001',validators=[zipcodeValidator])   #Hospital zipcode
+    hospital_x = models.FloatField('Hospital x',null=True,default=None)
+    hospital_y = models.FloatField('Hospital y',null=True,default=None)
 
+    unknown = 'unknown'
     pfizer = 'pf'
     janssen = 'js'
     all = 'all'
     VACCINETYPE_IN_CHOICE = [
+        (unknown, 'unknown'),
         (pfizer, 'pfizer'),
         (janssen,'janssen'),
         (all,'all')]
-    hospital_vaccineType = models.CharField('Hospital vaccineType', max_length=4, choices=VACCINETYPE_IN_CHOICE)
+    hospital_vaccineType = models.CharField('Hospital vaccineType', max_length=10, choices=VACCINETYPE_IN_CHOICE, default='all',null=True)
 
     def __str__(self):
-        return self.Hospital_name[:100]
+        return self.hospital_name[:50]
