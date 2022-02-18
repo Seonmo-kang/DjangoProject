@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Hospital',
             fields=[
-                ('hospital_id', models.BigAutoField(primary_key=True, serialize=False, verbose_name='Hospital id')),
+                ('hospital_id', models.BigAutoField(primary_key=True, serialize=True, verbose_name='Hospital id')),
                 ('hospital_name', models.CharField(max_length=150, verbose_name='Hospital name')),
                 ('hospital_address1', models.CharField(max_length=200, verbose_name='Hospital address1')),
                 ('hospital_address2', models.CharField(blank=True, max_length=200, null=True, verbose_name='Hospital address2')),
