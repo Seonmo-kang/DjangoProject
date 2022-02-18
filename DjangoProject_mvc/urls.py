@@ -23,7 +23,7 @@ from rest_framework import routers
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('appFolder/', include('appFolder.urls')), # App 'appFolder' urls file must be in project server.
+    path('api/', include('appFolder.urls')), # App 'appFolder' urls file must be in project server.
     path('frontend/',include('frontend.urls')), # React app called frontend
     # path('',include('appFolder.urls')) # if you want to direct app to main(128.0.0.1:8000/), then use this.
 ]
