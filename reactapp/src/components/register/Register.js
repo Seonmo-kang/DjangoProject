@@ -8,7 +8,7 @@ class Register extends React.Component{
         super(props);
         this.state = {
             step:1,
-            birthOfDate: '',
+            birthOfDate: new Date(),
             zipcode:'',
             vaccine:'',
             vaccineType:'',
@@ -29,6 +29,10 @@ class Register extends React.Component{
     handleChange = input => e => {
         this.setState({ [input]: e.target.value });
     }
+    handleDate = (date) => {
+        this.setState({ birthOfDate : date });
+        console.log( date );
+    }
 
     render() {
         const {step} =this.state;
@@ -40,6 +44,7 @@ class Register extends React.Component{
                     return(<Step1
                         nextStep={this.nextStep}
                         handleChange={this.handleChange}
+                        handleDate ={this.handleDate}
                         values={values}
                     />
                 )
