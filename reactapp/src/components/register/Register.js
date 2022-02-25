@@ -7,31 +7,48 @@ class Register extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            step:1,
-            birthOfDate: new Date(),
-            zipcode:'',
-            vaccine:'',
-            vaccineType:'',
-            consentAck: false
+            step: 1,
+            firstName: '',
+            lastName: '',
+            birthOfDate: '',
+            zipcode: '',
+            state: '',
+            vaccine: 'First Dose',
+            vaccineType: 'both',
+            consentAck: false,
+            hospital:''
         }
+
     }
     //go back to previous step
     prevStep = () =>{
         const { step } =this.state;
+
         this.setState({step: step-1});
     }
     //go to next step
     nextStep = () =>{
-        const { step } =this.state;
+        const { step, firstName, lastName,birthOfDate,zipcode,vaccine,vaccineType } =this.state;
+            if(step==1&&(!birthOfDate||!zipcode||!vaccine||!vaccineType)){
+                alert("Step1 - Please type all input.");
+                return ;
+            }
+
+       if(step==2&&(!firstName||!lastName)){
+               alert("Step2 - Please type all input.");
+               return;
+           }
         this.setState({step: step+1});
     }
     // handle field change
     handleChange = input => e => {
         this.setState({ [input]: e.target.value });
+        console.log(this.state);
     }
-    handleDate = (date) => {
-        this.setState({ birthOfDate : date });
-        console.log( date );
+    // handle ConsentAck change
+    consentChange = e =>{
+        this.setState({consentAck: e.currentTarget.checked});
+        console.log(this.state);
     }
 
     render() {
@@ -44,7 +61,7 @@ class Register extends React.Component{
                     return(<Step1
                         nextStep={this.nextStep}
                         handleChange={this.handleChange}
-                        handleDate ={this.handleDate}
+                        handleChecked ={this.consentChange}
                         values={values}
                     />
                 )
@@ -52,6 +69,7 @@ class Register extends React.Component{
                     return(<Step2
                         prevStep={this.prevStep}
                         nextStep={this.nextStep}
+                        handleChange={this.handleChange}
                         values={values}
                         />
                 )
@@ -59,6 +77,7 @@ class Register extends React.Component{
                     return(<Step3
                         prevStep={this.prevStep}
                         nextStep={this.nextStep}
+                        handleChange={this.handleChange}
                         values={values}
                         />
                     )
