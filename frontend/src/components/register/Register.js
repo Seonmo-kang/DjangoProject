@@ -10,7 +10,7 @@ class Register extends React.Component{
         };
     }
     componentDidMount() {
-        fetch("../../../appFolder/info")
+        fetch("http://localhost:8000/appFolder/info")
             .then(response=>{
                 if(response.status>400){
                     return this.setState(()=>{
