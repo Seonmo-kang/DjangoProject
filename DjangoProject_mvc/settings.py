@@ -78,8 +78,8 @@ TEMPLATES = [
 WSGI_APPLICATION = 'DjangoProject_mvc.wsgi.application'
 
 # Django-Cors-Headers
-CORS_ALLOWED_ORIGINS = ['http://localhost:3000',"http://127.0.0.1:3000"]
-CSRF_TRUSTED_ORIGINS = ['http://localhost:3000']
+CORS_ALLOWED_ORIGINS = ['http://localhost:3000','http://127.0.0.1:3000']
+CSRF_TRUSTED_ORIGINS = ['http://localhost:3000','http://127.0.0.1:3000']
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
