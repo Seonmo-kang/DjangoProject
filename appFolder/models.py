@@ -7,8 +7,10 @@ zipcodeValidator = RegexValidator(r"^([0-9]{5}(?:-[0-9]{4})?$)",'Must be 00000 o
 # Info DB : user information input
 class Info(models.Model):
     info_index = models.BigAutoField("indexNum",primary_key=True) # Auto incredent number
+    info_firstName = models.CharField("firstName",max_length=40,default="unknown")
+    info_lastName = models.CharField("lastName",max_length=40,default="unknown")
     info_dateOfBirth = models.DateField("date of birth",help_text="YYYY/MM/DD") # Date of Birth
-    info_zipCode = models.CharField("zipcode",max_length=11,default="10001",
+    info_zipCode = models.CharField("zipcode",max_length=11,
                                     validators=[zipcodeValidator])
         # RegexValidator(regex=r"^([0-9]{5}(?:-[0-9]{4})?$)",message='Must be 00000 or 00000-0000',code='This is code')
         # # I would like to reuse RegexValidator(regex=r'^([0-9]{5}(?:-[0-9]{4})?$)')
