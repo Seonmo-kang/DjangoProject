@@ -65,9 +65,9 @@ const Step1 = ({nextStep, handleChange,handleChecked ,values}) => {
             <Box>
                 <label>Vaccine :
                     <select defaultValue={ values.vaccine } onChange={handleChange('vaccine')}>
-                        <option value="First Dose">First Dose</option>
-                        <option value="Booster Dose">Booster Dose</option>
-                        <option value="Additional Dose">Additional Dose</option>
+                        <option value="fd">First Dose</option>
+                        <option value="bd">Booster Dose</option>
+                        <option value="ad">Additional Dose</option>
                     </select>
                 </label>
             </Box>
@@ -75,14 +75,14 @@ const Step1 = ({nextStep, handleChange,handleChecked ,values}) => {
             <Box>
                 <label>VaccineType :
                     <select defaultValue={values.vaccineType} onChange={handleChange('vaccineType')}>
-                        <option value="pfizer">pfizer</option>
-                        <option value="janssen">janssen</option>
-                        <option value="both">both</option>
+                        <option value="pf">pfizer</option>
+                        <option value="js">janssen</option>
+                        <option value="all">both</option>
                     </select>
                 </label>
             </Box>
             <Box>
-                <label>Consent Acknowledge:
+                <label>Consent Acknowledge :
                 <input type='checkbox' onChange={handleChecked}/>
                 </label>
             </Box>

@@ -21,7 +21,8 @@ urlpatterns = [
     path('hospitalDetail/<str:state>/',views.HospitalStateDetail.as_view(),name='HospitalStateDetail'),
     path('hospitalDetail/zipcode/<int:code>/',views.HospitalZipcodeDetail.as_view(),name='HospitalZipcodeDetail'),
     path('hospitalDetail/info/<int:hospital_id>/',views.HospitalDetail.as_view(),name='HospitalDetail'),
-
+    path('info/register/',views.InfoTestPost.as_view()),
+    path('getCSRF/',views.csrf),
     path('infoList',views.InfoList.as_view(),name='InfoList'),
     path('infoDetail',views.InfoDetail.as_view(),name='InfoDetail')
 ]

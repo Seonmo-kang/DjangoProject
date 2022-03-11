@@ -1,4 +1,7 @@
-from django.http import HttpResponse, Http404;
+from django.http import HttpResponse, Http404, JsonResponse;
+# for CSRF
+from django.middleware.csrf import get_token
+from rest_framework.request import Request
 from rest_framework import generics
 from rest_framework.views import  APIView
 from rest_framework.response import Response
@@ -8,6 +11,45 @@ from rest_framework import viewsets,permissions
 from .models import Info, Hospital
 from .serializers import InfoSerializer, HospitalListSerializer
 
+# return csrf json file
+def csrf(request):
+    return JsonResponse({'csrfToken': get_token(request)})
+
+class InfoPost(APIView):
+    def post(self,request,format=None):
+        serializer = InfoSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return  Response(serializer.data,status=status.HTTP_201_CREATED)
+        return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+class InfoTestPost(APIView):
+    def post(self,request,format=None):
+        print("requested data is "+str(request.data['values']))
+        customer_data = request.data['values']
+        hospital_id = Hospital.objects.get(hospital_id=customer_data["hospital"])
+        # info = Info(info_firstName = customer_data["firstName"],
+        #             info_lastName = customer_data["lastName"],
+        #             info_dateOfBirth = customer_data["birthOfDate"],
+        #             info_state = customer_data["state"],
+        #             info_zipCode = customer_data["zipcode"],
+        #             info_vaccine = customer_data["vaccine"],
+        #             info_vaccineType = customer_data["vaccineType"],
+        #             info_consentAck = customer_data["consentAck"],
+        #             info_hospital_id = Hospital.objects.get(hospital_id=customer_data["hospital"]) # *Foreign key
+        #             )
+        infoSerializer = InfoSerializer.create(Info,validated_data={"info_firstName" : customer_data["firstName"],
+                                                           "info_lastName" : customer_data["lastName"],
+                                                           "info_dateOfBirth" : customer_data["birthOfDate"],
+                                                           "info_state" : customer_data["state"],
+                                                           "info_zipCode" : customer_data["zipcode"],
+                                                           "info_vaccine" : customer_data["vaccine"],
+                                                           "info_vaccineType" : customer_data["vaccineType"],
+                                                           "info_consentAck" : customer_data["consentAck"],
+                                                           "info_hospital_id" : hospital_id})
+        if(infoSerializer):
+            return Response({"request":"ok"},status=status.HTTP_201_CREATED)
+        else:
+            return  Response(infoSerializer.data,status=status.HTTP_400_BAD_REQUEST)
 
 class InfoView(viewsets.ModelViewSet):
     serializer_class = InfoSerializer
@@ -122,6 +164,7 @@ class HospitalZipcodeDetail(APIView):
 class InfoList(generics.ListCreateAPIView):
     queryset = Info.objects.all()
     serializer_class =  InfoSerializer
+
 class InfoDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Info.objects.all()
     serializer_class = InfoSerializer

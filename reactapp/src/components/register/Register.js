@@ -1,7 +1,8 @@
-import React, {useState} from "react";
+import React from "react";
 import Step1 from "./step/Step1";
 import Step2 from "./step/Step2";
 import Step3 from "./step/Step3";
+import Confirm from "./step/Confirm";
 
 class Register extends React.Component{
     constructor(props) {
@@ -13,8 +14,8 @@ class Register extends React.Component{
             birthOfDate: '',
             zipcode: '',
             state: '',
-            vaccine: 'First Dose',
-            vaccineType: 'both',
+            vaccine: 'fd',
+            vaccineType: 'all',
             consentAck: false,
             hospital:''
         }
@@ -28,16 +29,21 @@ class Register extends React.Component{
     }
     //go to next step
     nextStep = () =>{
-        const { step, firstName, lastName,birthOfDate,zipcode,vaccine,vaccineType } =this.state;
-            if(step==1&&(!birthOfDate||!zipcode||!vaccine||!vaccineType)){
-                alert("Step1 - Please type all input.");
-                return ;
-            }
+        const { step, firstName, lastName, birthOfDate,zipcode, vaccine, vaccineType,hospital } =this.state;
 
-       if(step==2&&(!firstName||!lastName)){
+        if(step===1&&(!birthOfDate||!zipcode||!vaccine||!vaccineType)){
+            alert("Step1 - Please type all input.");
+            return ;
+        }
+
+       if(step===2&&(!firstName||!lastName)){
                alert("Step2 - Please type all input.");
                return;
            }
+       if(step===3&&(!hospital)){
+           alert("Step3 - Please select your hospital.");
+           return ;
+       }
         this.setState({step: step+1});
     }
     // handle field change
@@ -50,11 +56,15 @@ class Register extends React.Component{
         this.setState({consentAck: e.currentTarget.checked});
         console.log(this.state);
     }
+    handleHospital = id => {
+        this.setState( {hospital : id});
+        console.log(this.state);
+    }
 
     render() {
         const {step} =this.state;
-        const { birthOfDate, zipcode, vaccine, vaccineType, consentAck} = this.state;
-        const values ={ birthOfDate, zipcode, vaccine, vaccineType, consentAck };
+        const { birthOfDate, zipcode, firstName, lastName, state, hospital,vaccine, vaccineType, consentAck} = this.state;
+        const values ={ birthOfDate, zipcode, firstName,lastName,hospital,state,vaccine, vaccineType, consentAck };
 
             switch(step){
                 case 1:
@@ -78,15 +88,16 @@ class Register extends React.Component{
                         prevStep={this.prevStep}
                         nextStep={this.nextStep}
                         handleChange={this.handleChange}
+                        handleHospital={this.handleHospital}
                         values={values}
                         />
                     )
-                // case 4:
-                //     return(<Confirm
-                //         prevStep={this.prevStep}
-                //         nextStep={this.nextStep}
-                //         values={values}
-                //             />)
+                case 4:
+                    return(<Confirm
+                        prevStep={this.prevStep}
+                        nextStep={this.nextStep}
+                        values={values}
+                            />)
                 default: ;
             }
     }
